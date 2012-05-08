@@ -13,4 +13,7 @@ dpfp_threaded_SOURCES = dpfp_threaded.c
 dpfp_threaded_CFLAGS = $(THREAD_CFLAGS) $(AM_CFLAGS)
 noinst_PROGRAMS += dpfp_threaded
 endif
+
+sam3u_benchmark_SOURCES = sam3u_benchmark.c
+noinst_PROGRAMS += sam3u_benchmark
 endif
