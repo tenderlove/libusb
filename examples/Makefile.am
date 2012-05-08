@@ -7,13 +7,10 @@ listdevs_SOURCES = listdevs.c
 if HAVE_SIGACTION
 dpfp_SOURCES = dpfp.c
 noinst_PROGRAMS += dpfp
-endif
 
 if THREADS_POSIX
-if HAVE_SIGACTION
 dpfp_threaded_SOURCES = dpfp_threaded.c
 dpfp_threaded_CFLAGS = $(THREAD_CFLAGS) $(AM_CFLAGS)
 noinst_PROGRAMS += dpfp_threaded
 endif
 endif
-
