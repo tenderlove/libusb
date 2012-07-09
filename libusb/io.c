@@ -1464,9 +1464,11 @@ int usbi_handle_transfer_completion(struct usbi_transfer *itransfer,
 	if (usbi_using_timerfd(ctx)) {
 		if (r < 0)
 			return r;
-		r = disarm_timerfd(ctx);
-		if (r < 0)
-			return r;
+		else if (0 == r) {
+			r = disarm_timerfd(ctx);
+			if (r < 0)
+				return r;
+		}
 	}
 
 	if (status == LIBUSB_TRANSFER_COMPLETED
