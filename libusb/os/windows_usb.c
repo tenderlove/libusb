@@ -29,7 +29,6 @@
 #include <fcntl.h>
 #include <process.h>
 #include <stdio.h>
-#include <inttypes.h>
 #include <objbase.h>
 #include <winioctl.h>
 
@@ -1997,7 +1996,7 @@ unsigned __stdcall windows_clock_gettime_threaded(void* param)
 		// The hires frequency can go as high as 4 GHz, so we'll use a conversion
 		// to picoseconds to compute the tv_nsecs part in clock_gettime
 		hires_ticks_to_ps = UINT64_C(1000000000000) / hires_frequency;
-		usbi_dbg("hires timer available (Frequency: %"PRIu64" Hz)", hires_frequency);
+		usbi_dbg("hires timer available (Frequency: %I64u Hz)", hires_frequency);
 	}
 
 	// Main loop - wait for requests
