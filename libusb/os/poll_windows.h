@@ -21,6 +21,8 @@
  */
 #pragma once
 
+#include <windows.h>
+
 #if defined(_MSC_VER)
 // disable /W4 MSVC warnings that are benign
 #pragma warning(disable:4127) // conditional expression is constant

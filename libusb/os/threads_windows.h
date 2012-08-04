@@ -21,6 +21,8 @@
 #ifndef LIBUSB_THREADS_WINDOWS_H
 #define LIBUSB_THREADS_WINDOWS_H
 
+#include <windows.h>
+
 #define usbi_mutex_static_t     volatile LONG
 #define USBI_MUTEX_INITIALIZER  0
 
