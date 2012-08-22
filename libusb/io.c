@@ -1747,7 +1747,7 @@ int API_EXPORTED libusb_wait_for_event(libusb_context *ctx, struct timeval *tv)
 
 	timeout.tv_sec += tv->tv_sec;
 	timeout.tv_nsec += tv->tv_usec * 1000;
-	if (timeout.tv_nsec > 1000000000) {
+	while (timeout.tv_nsec >= 1000000000) {
 		timeout.tv_nsec -= 1000000000;
 		timeout.tv_sec++;
 	}
