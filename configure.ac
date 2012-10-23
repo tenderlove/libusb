@@ -114,7 +114,6 @@ windows)
 	AC_DEFINE([POLL_NFDS_TYPE],[unsigned int],[type of second poll() argument])
 	;;
 esac
-AC_SUBST(THREAD_CFLAGS)
 AC_SUBST(LIBS)
 
 AM_CONDITIONAL(OS_LINUX, test "x$backend" = xlinux)
@@ -206,7 +205,7 @@ AM_CONDITIONAL([HAVE_SIGACTION], [test "x$have_sigaction" = "xyes"])
 AC_CHECK_HEADERS([sys/time.h])
 AC_CHECK_FUNCS(gettimeofday)
 
-AM_CFLAGS="-std=gnu99 -Wall -Wundef -Wunused -Wstrict-prototypes -Werror-implicit-function-declaration $nopointersign_cflags -Wshadow"
+AM_CFLAGS="-std=gnu99 -Wall -Wundef -Wunused -Wstrict-prototypes -Werror-implicit-function-declaration $nopointersign_cflags -Wshadow ${THREAD_CFLAGS}"
 
 AC_SUBST(VISIBILITY_CFLAGS)
 AC_SUBST(AM_CFLAGS)
