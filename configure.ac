@@ -78,10 +78,10 @@ case $backend in
 linux)
 	AC_DEFINE(OS_LINUX, 1, [Linux backend])
 	AC_SUBST(OS_LINUX)
-	AC_CHECK_LIB(rt, clock_gettime, PC_LIBS_PRIVATE="-lrt")
+	AC_CHECK_LIB(rt, clock_gettime, LIBS="-lrt")
 	threads="posix"
 	THREAD_CFLAGS="-pthread"
-	PC_LIBS_PRIVATE="${PC_LIBS_PRIVATE} -pthread"
+	LIBS="${LIBS} -pthread"
 	AC_CHECK_HEADERS([poll.h])
 	AC_DEFINE([POLL_NFDS_TYPE],[nfds_t],[type of second poll() argument])
 	;;
@@ -89,7 +89,7 @@ darwin)
 	AC_DEFINE(OS_DARWIN, 1, [Darwin backend])
 	AC_SUBST(OS_DARWIN)
 	threads="posix"
-	PC_LIBS_PRIVATE="-lobjc -Wl,-framework,IOKit -Wl,-framework,CoreFoundation"
+	LIBS="-lobjc -Wl,-framework,IOKit -Wl,-framework,CoreFoundation"
 	LTLDFLAGS="${LTLDFLAGS} -Wl,-prebind"
 	AC_CHECK_HEADERS([poll.h])
 	AC_CHECK_TYPE([nfds_t],
@@ -102,21 +102,20 @@ openbsd)
 	AC_SUBST(OS_OPENBSD)
 	threads="posix"
 	THREAD_CFLAGS="-pthread"
-	PC_LIBS_PRIVATE="-pthread"
+	LIBS="-pthread"
 	AC_CHECK_HEADERS([poll.h])
 	AC_DEFINE([POLL_NFDS_TYPE],[nfds_t],[type of second poll() argument])
 	;;
 windows)
 	AC_DEFINE(OS_WINDOWS, 1, [Windows backend])
 	AC_SUBST(OS_WINDOWS)
-	PC_LIBS_PRIVATE=""
+	LIBS=""
 	LTLDFLAGS="${LTLDFLAGS} -avoid-version -Wl,--add-stdcall-alias"
 	AC_DEFINE([POLL_NFDS_TYPE],[unsigned int],[type of second poll() argument])
 	;;
 esac
 AC_SUBST(THREAD_CFLAGS)
-AC_SUBST(PC_LIBS_PRIVATE)
-LIBS="${LIBS} ${PC_LIBS_PRIVATE}"
+AC_SUBST(LIBS)
 
 AM_CONDITIONAL(OS_LINUX, test "x$backend" = xlinux)
 AM_CONDITIONAL(OS_DARWIN, test "x$backend" = xdarwin)
