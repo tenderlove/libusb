@@ -78,7 +78,7 @@ case $backend in
 linux)
 	AC_DEFINE(OS_LINUX, 1, [Linux backend])
 	AC_SUBST(OS_LINUX)
-	AC_CHECK_LIB(rt, clock_gettime, LIBS="-lrt")
+	AC_SEARCH_LIBS(clock_gettime, rt, [], [], -pthread)
 	threads="posix"
 	THREAD_CFLAGS="-pthread"
 	LIBS="${LIBS} -pthread"
